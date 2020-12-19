@@ -14,7 +14,10 @@ export default class App extends Component {
     e.preventDefault();
     const { pageX, pageY } = e;
     // Handler for Lightbulb 1
-    if (!this.state.Bulb1 && hasClickedCoords(pageX, pageY, [770, 300, 940, 425]))
+    if (
+      !this.state.Bulb1 &&
+      hasClickedCoords(pageX, pageY, [770, 300, 940, 425])
+    )
       if (window.prompt("What do you see?") === "Light 1") {
         this.setState({ Bulb1: true, Points: this.state.Points + 1 });
         window.alert("Wow! That's right! You got a point!");
@@ -22,7 +25,10 @@ export default class App extends Component {
         window.alert("Sorry! Try again!");
       }
     // Handler for Lightbulb 2
-    if (!this.state.Bulb2 && hasClickedCoords(pageX, pageY, [1225, 375, 1320, 455]))
+    if (
+      !this.state.Bulb2 &&
+      hasClickedCoords(pageX, pageY, [1225, 375, 1320, 455])
+    )
       if (window.prompt("What do you see?") === "Light 2") {
         window.alert("Wow! That's right! You got a point!");
         this.setState({ Bulb2: true, Points: this.state.Points + 1 });
@@ -31,17 +37,29 @@ export default class App extends Component {
       }
   };
   render() {
+    const { Bulb1, Bulb2 } = this.state;
     return (
       <div className="App">
-        <div className={"clickArea" + (this.state.Bulb1 && this.state.Bulb2 ? " solved" : "")} onClick={this.handleClick}></div>
-        {this.state.Bulb1 && this.state.Bulb2 && (
+        <div
+          className={"clickArea" + (Bulb1 && Bulb2 ? " solved" : "")}
+          onClick={this.handleClick}
+        ></div>
+        {Bulb1 && Bulb2 && (
           <div className="complete">
             <img src={Solved} alt="Room Solved!" />
           </div>
         )}
         <div className="puzzle">
-          <img src={this.state.Bulb1 ? Complete : Unsolved} className={this.state.Bulb1 ? "solved" : null} alt={"Puzzle 1 " + (this.state.Bulb1 ? "" : "in") + "complete."} />
-          <img src={this.state.Bulb2 ? Complete : Unsolved} className={this.state.Bulb2 ? "solved" : null} alt={"Puzzle 2 " + (this.state.Bulb1 ? "" : "in") + "complete."} />
+          <img
+            src={Bulb1 ? Complete : Unsolved}
+            className={Bulb1 ? "solved" : null}
+            alt={"Puzzle 1 " + (Bulb1 ? "" : "in") + "complete."}
+          />
+          <img
+            src={Bulb2 ? Complete : Unsolved}
+            className={Bulb2 ? "solved" : null}
+            alt={"Puzzle 2 " + (Bulb1 ? "" : "in") + "complete."}
+          />
         </div>
       </div>
     );
