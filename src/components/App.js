@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { hasClickedCoords } from "../helpers/coords";
+import Solved from "../assets/solved.png";
 import Unsolved from "../assets/puzzle.png";
 import Complete from "../assets/complete.png";
 
@@ -32,10 +33,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="clickArea" onClick={this.handleClick}></div>
+        <div className={"clickArea" + (this.state.Bulb1 && this.state.Bulb2 ? " solved" : "")} onClick={this.handleClick}></div>
+        {this.state.Bulb1 && this.state.Bulb2 && (
+          <div className="complete">
+            <img src={Solved} alt="Room Solved!" />
+          </div>
+        )}
         <div className="puzzle">
-          <img src={this.state.Bulb1 ? Complete : Unsolved} className={this.state.Bulb1 ? "solved" : null} alt="" />
-          <img src={this.state.Bulb2 ? Complete : Unsolved} className={this.state.Bulb2 ? "solved" : null} alt="" />
+          <img src={this.state.Bulb1 ? Complete : Unsolved} className={this.state.Bulb1 ? "solved" : null} alt={"Puzzle 1 " + (this.state.Bulb1 ? "" : "in") + "complete."} />
+          <img src={this.state.Bulb2 ? Complete : Unsolved} className={this.state.Bulb2 ? "solved" : null} alt={"Puzzle 2 " + (this.state.Bulb1 ? "" : "in") + "complete."} />
         </div>
       </div>
     );
