@@ -16,3 +16,17 @@ body,
   width: 1920px;
   height: 1080px;
 }
+.puzzle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+}
+.puzzle img {
+  margin-left: 25px;
+  width: 100px;
+  opacity: 0.5;
+}
+.puzzle img.solved {
+  opacity: 1;
+}
